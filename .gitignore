@@ -1,0 +1,5 @@
+build/
+dist/
+pyndiff/__pycache__/
+pyndiff.egg-info/
+.venv
