@@ -32,7 +32,7 @@ import xmljson
 
 # Custom Python libraries.
 
-__version__ = "1.0.0"
+__version__ = "1.0.1"
 
 
 def build_nmap_service_name(service_dict):
@@ -169,7 +169,10 @@ Time between scans: {scan_delta_seconds} seconds / {scan_delta_minutes} minutes 
 
 """
 
-    hostdiff_raw = json_data["nmapdiff"]["scandiff"]["hostdiff"]
+    try:
+        hostdiff_raw = json_data["nmapdiff"]["scandiff"]["hostdiff"]
+    except KeyError:
+        hostdiff_raw = []
 
     # Standardize hostdiff to be a list so it can be iterated through.
     # Single host (dict object) - add hostdiff dict to an empty list so it can be iterated through.
