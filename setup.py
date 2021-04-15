@@ -5,7 +5,7 @@ with open("README.md", "r") as fh:
 
 setuptools.setup(
     name="pyndiff",
-    version="1.0.1",
+    version="1.0.2",
     author="Brennon Thomas",
     author_email="info@opsdisk.com",
     description="Generate human-readable ndiff output when comparing 2 Nmap XML scan files.",
