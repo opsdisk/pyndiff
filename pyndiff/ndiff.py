@@ -1205,7 +1205,7 @@ class NmapContentHandler(xml.sax.handler.ContentHandler):
             "port": self._start_port,
             "state": self._start_state,
             "service": self._start_service,
-            "script": self._start_script,
+            # "script": self._start_script,
             "osmatch": self._start_osmatch,
             "finished": self._start_finished,
         }

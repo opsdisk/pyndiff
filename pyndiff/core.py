@@ -32,7 +32,7 @@ import xmljson
 
 # Custom Python libraries.
 
-__version__ = "1.0.1"
+__version__ = "1.0.2"
 
 
 def build_nmap_service_name(service_dict):
@@ -50,6 +50,24 @@ def build_nmap_service_name(service_dict):
     ).strip()
 
     return nmap_service_name
+
+
+def extract_target(address_data_structure):
+    """Extract an IP address target from an unknown list or dict data structure."""
+
+    # print(type(address_data_structure))
+
+    # In some fringe cases, the MAC address is also included.  Loop through address_data_structure (which is a list) to
+    # find the IP address.
+    if type(address_data_structure) is list:
+        for address in address_data_structure:
+            if address["addrtype"] in ["ipv4", "ipv6"]:
+                target = address["addr"]
+                break
+    else:
+        target = address_data_structure["addr"]
+
+    return target
 
 
 def generate_diff(
@@ -213,7 +231,8 @@ Time between scans: {scan_delta_seconds} seconds / {scan_delta_minutes} minutes 
             if "a" in host:
 
                 if host["a"]["host"]["status"]["state"] == "up":
-                    target = host["a"]["host"]["address"]["addr"]
+                    # Extract the target.
+                    target = extract_target(host["a"]["host"]["address"])
 
                     # 1) Determine which ports are now closed, if any.
                     try:
@@ -265,7 +284,8 @@ Time between scans: {scan_delta_seconds} seconds / {scan_delta_minutes} minutes 
             if "b" in host:
 
                 if host["b"]["host"]["status"]["state"] == "up":
-                    target = host["b"]["host"]["address"]["addr"]
+                    # Extract the target.
+                    target = extract_target(host["b"]["host"]["address"])
 
                     # 1) Determine which ports are now open, if any.
                     try:
@@ -322,7 +342,7 @@ Time between scans: {scan_delta_seconds} seconds / {scan_delta_minutes} minutes 
                 continue
 
             # Extract the target.
-            target = host["host"]["address"]["addr"]
+            target = extract_target(host["host"]["address"])
 
             # Extract the portdiff dict.
             portdiff_raw = host["host"]["ports"]["portdiff"]

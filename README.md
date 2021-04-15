@@ -55,6 +55,18 @@ used:
 
 <https://github.com/nmap/nmap/pull/1807/files#diff-876b1aeeb590be439b50702351985b633655e89e78f6b520f321ce84076c6b32>
 
+with one slight modification.  Line 1208 is commented out to ignore script output when comparing scans.  See
+<https://github.com/rackerlabs/pyndiff/issues/3> for more information.
+
+```python
+    "state": self._start_state,
+    "service": self._start_service,
+    # "script": self._start_script,
+    "osmatch": self._start_osmatch,
+    "finished": self._start_finished,
+}
+```
+
 ## Helpful Options
 
 `--uof` - Optionally ignore UDP "open|filtered" port state changes because they aren't definitive.
