@@ -1,3 +1,10 @@
+<h3 align="center">
+    This project has been forked and will be maintained here:
+    <br>
+    <br>
+    <a href="https://github.com/opsdisk/pyndiff">https://github.com/opsdisk/pyndiff</a>
+</h3>
+
 # Overview
 
 `pyndiff` (pronounced pin-diff) easily generates human-readable [ndiff](https://nmap.org/book/ndiff-man.html)
@@ -6,8 +13,9 @@ services change between Nmap scans and presenting it in a visually appealing and
 Unfortunately, both the diff and XML output from `ndiff` are unreadable and unusable for a large number of targets with
 many changes.  `pyndiff` has been used to compare two different 40 MB Nmap XML files in 13 seconds!
 
-This library is used in [Scantron](https://github.com/rackerlabs/scantron/), the distributed Nmap / masscan scanning
-framework, to email out Nmap scan diffs (coming soon!).
+This library is used in [Scantron](https://github.com/rackerlabs/scantron/), the distributed nmap / masscan scanning
+framework complete with scan scheduling, engine pooling, subsequent scan port diff-ing, and an API client for
+automation workflows.
 
 `pyndiff` is developed and maintained by [@opsdisk](https://twitter.com/opsdisk) as part of Rackspace's Threat and
 Vulnerability Analysis team.
